@@ -6,10 +6,6 @@ Este repositorio contiene el código fuente y las instrucciones para implementar
 
 ## 👨‍🏫 Datos del Docente / Autor
 * **Autor:** MGTI. Saul Isai Soto Ortiz
-* **Asignaturas:** Internet de las Cosas / Sistemas de Sensores
-* **Contacto:** saul_soto@uaeh.edu.mx
-* **Institución:** Universidad Autónoma del Estado de Hidalgo (UAEH)
-
 ---
 
 ## 🛠️ Requisitos del Sistema (Hardware y Software)
