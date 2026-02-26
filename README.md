@@ -68,7 +68,8 @@ El sistema utiliza un modelo de comunicación asíncrona basado en "Endpoints" (
 ### 1. El Emisor (Coordinador / Switch)
 Cuando presionas el botón BOOT, el código filtra el ruido eléctrico (Debounce) y ejecuta el siguiente comando:
 ```cpp
-zbSwitch.lightToggle();´´´
+zbSwitch.lightToggle();
+´´´
 Este comando estándar de Zigbee se transmite por el aire. Significa: *"Cualquier luz (Endpoint 10) que esté en mi red, invierta su estado actual"*. Al Coordinador no le importa cuántos focos hay; él solo emite la orden.
 
 ### 2. El Receptor (Router / Relevador)
