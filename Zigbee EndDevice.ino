@@ -89,12 +89,20 @@ void setup() {
 
 // --- BLOQUE 5: EL LOOP MISTERIOSAMENTE VACÍO (RTOS) ---
 void loop() {
-  // ¿Por qué el programa funciona si el loop está prácticamente vacío? 
-  // Porque el ESP32 usa FreeRTOS (Un Sistema Operativo en Tiempo Real).
-  // El manejo del protocolo Zigbee se está ejecutando en una "Tarea" (hilo) invisible.
-  
-  // El delay(100) no es inútil: le dice al procesador que esta tarea principal 
-  // está libre, permitiendo que le asigne el 100% de la energía a la antena de radio 
-  // y evita que el "Perro Guardián" (Watchdog Timer) reinicie el chip por asfixia.
+/* * PREGUNTA DE INGENIERÍA: 
+   * Si el ESP32-C6 tiene un SOLO NÚCLEO principal (Core 0)... 
+   * ¿Cómo es que el radio Zigbee sigue escuchando si estamos en este loop?
+   * * RESPUESTA: Concurrencia mediante FreeRTOS.
+   * El sistema operativo divide el tiempo del procesador (Time-Slicing).
+   * 1. Hay una "Tarea Zigbee" invisible corriendo con alta prioridad.
+   * 2. Este "loop()" es otra tarea (Tarea Arduino) de menor prioridad.
+   * * El delay(100) es VITAL. En FreeRTOS, un delay no "congela" el chip, 
+   * sino que cede amablemente el control del procesador. 
+   * Le dice al chip: "Pon a dormir el loop 100ms y usa todo ese poder 
+   * de procesamiento para atender la antena Zigbee sin interrupciones".
+   * * Si quitas el delay, este loop acaparará el procesador, asfixiará
+   * la conexión inalámbrica y el Perro Guardián (Watchdog) reiniciará la placa.
+   */
   delay(100); 
+
 }
